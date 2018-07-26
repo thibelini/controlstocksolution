@@ -17,4 +17,7 @@ public class CategoriaFACADE{
 	/** Garante a aplicacao da associacao entre o Controller e Service */
 	private CategoriaSERVICE service;
 
+	public CategoriaFACADE(){
+		service = new CategoriaSERVICE();
+	}
 }

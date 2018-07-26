@@ -16,4 +16,8 @@ public class CategoriaSERVICE{
 
 	private CategoriaDAO dao;
 
+	public CategoriaSERVICE(){
+		dao = new CategoriaDAO();
+	}
+
 }

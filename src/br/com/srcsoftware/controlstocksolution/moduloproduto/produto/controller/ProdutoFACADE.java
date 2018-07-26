@@ -17,4 +17,8 @@ public class ProdutoFACADE{
 	/** Garante a aplicacao da associacao entre o Controller e Service */
 	private ProdutoSERVICE service;
 
+	public ProdutoFACADE(){
+		service = new ProdutoSERVICE();
+	}
+
 }
