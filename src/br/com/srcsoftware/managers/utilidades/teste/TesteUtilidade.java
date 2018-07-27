@@ -10,7 +10,7 @@ public class TesteUtilidade{
 
 		Utilidades util = new Utilidades();
 
-		System.out.println( util.parseBigDecimal( new BigDecimal( "1987.96" ), "R$" ) );
+		System.out.println( Utilidades.parseBigDecimal( new BigDecimal( "1987.96" ), "R$" ) );
 
 	}
 

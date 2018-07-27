@@ -6,7 +6,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Utilidades{
 
-	public LocalDate parseLocalDate( String data ) {
+	public static String schema = "control_stock_solution_t34";
+
+	public static LocalDate parseLocalDate( String data ) {
 		if ( data == null || data.isEmpty() || !data.contains( "/" ) ) {
 			return null;
 		}
@@ -15,7 +17,7 @@ public class Utilidades{
 		return novaData;
 	}
 
-	public String parseLocalDate( LocalDate data ) {
+	public static String parseLocalDate( LocalDate data ) {
 		if ( data == null ) {
 			return null;
 		}
@@ -24,7 +26,7 @@ public class Utilidades{
 		return novaData;
 	}
 
-	public BigDecimal parseBigDecimal( String valor ) {
+	public static BigDecimal parseBigDecimal( String valor ) {
 		if ( valor == null || valor.isEmpty() ) {
 			return null;
 		}
@@ -33,7 +35,7 @@ public class Utilidades{
 		return novoValor;
 	}
 
-	public String parseBigDecimal( BigDecimal valor ) {
+	public static String parseBigDecimal( BigDecimal valor ) {
 		if ( valor == null ) {
 			return null;
 		}
@@ -41,7 +43,7 @@ public class Utilidades{
 		return String.format( "%,.2f", valor ).trim();
 	}
 
-	public String parseBigDecimal( BigDecimal valor, String moeda ) {
+	public static String parseBigDecimal( BigDecimal valor, String moeda ) {
 		if ( valor == null ) {
 			return null;
 		}
