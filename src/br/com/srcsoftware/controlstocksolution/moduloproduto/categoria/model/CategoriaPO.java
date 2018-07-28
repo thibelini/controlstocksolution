@@ -1,5 +1,7 @@
 package br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model;
 
+import br.com.srcsoftware.managers.abstracts.AbstractPO;
+
 /**
  * 
  * Classe da camada Model
@@ -9,7 +11,8 @@ package br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model;
  * @version 1.0
  */
 
-public class CategoriaPO{
+public class CategoriaPO extends AbstractPO{
+
 	private Long id;
 	private String nome;
 

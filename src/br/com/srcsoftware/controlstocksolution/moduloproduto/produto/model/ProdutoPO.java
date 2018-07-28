@@ -3,6 +3,7 @@ package br.com.srcsoftware.controlstocksolution.moduloproduto.produto.model;
 import java.math.BigDecimal;
 
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
+import br.com.srcsoftware.managers.abstracts.AbstractPO;
 
 /**
  * 
@@ -15,7 +16,7 @@ import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.Cat
  * @version 1.0
  */
 
-public class ProdutoPO{
+public class ProdutoPO extends AbstractPO{
 	private Long id;
 	private String nome;
 	private BigDecimal preco;
