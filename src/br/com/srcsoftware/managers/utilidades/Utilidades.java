@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Utilidades{
+public abstract class Utilidades{
 
 	public static final String SCHEMA = "control_stock_solution_t34";
 

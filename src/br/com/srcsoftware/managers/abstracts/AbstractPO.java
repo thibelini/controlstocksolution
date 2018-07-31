@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * @version 1.0
  */
 
-public class AbstractPO{
+public abstract class AbstractPO{
 
 	private LocalDateTime dataHoraCadastro;
 
@@ -23,5 +23,14 @@ public class AbstractPO{
 	public void setDataHoraCadastro( LocalDateTime dataHoraCadastro ) {
 		this.dataHoraCadastro = dataHoraCadastro;
 	}
+
+	@Override
+	public abstract String toString();
+
+	@Override
+	public abstract int hashCode();
+
+	@Override
+	public abstract boolean equals( Object obj );
 
 }
