@@ -12,13 +12,29 @@ import br.com.srcsoftware.controlstocksolution.moduloproduto.produto.model.Produ
  * @version 1.0
  */
 
-public class ProdutoFACADE{
+public final class ProdutoFACADE{
+
+	/** Garante a aplicacao da associacao entre o Service e o DAO */
+	/**
+	 * Toda constante deve possuir um valor definido
+	 * Os unicos lugares possiveis de inicializacao de uma constante sao:
+	 * - No ato da DECLARAÇÃO;
+	 * -- Ex: final ProdutoDAO DAO = new ProdutoDAO();
+	 * - Na PRIMEIRA LINHA DO CONSTRUTOR
+	 * -- Ex public ProdutoSERVICE(){
+	 * ------------DAO = new ProdutoDAO();
+	 * ------}
+	 * - Em um BLOCO ESTATICO
+	 * -- Ex: static{
+	 * ---------DAO = new ProdutoDAO();
+	 * -------}
+	 */
 
 	/** Garante a aplicacao da associacao entre o Controller e Service */
-	private ProdutoSERVICE service;
+	private final ProdutoSERVICE SERVICE;
 
 	public ProdutoFACADE(){
-		service = new ProdutoSERVICE();
+		SERVICE = new ProdutoSERVICE();
 	}
 
 }

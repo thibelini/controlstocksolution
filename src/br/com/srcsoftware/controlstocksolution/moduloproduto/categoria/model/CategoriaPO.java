@@ -11,7 +11,7 @@ import br.com.srcsoftware.managers.abstracts.AbstractPO;
  * @version 1.0
  */
 
-public class CategoriaPO extends AbstractPO{
+public final class CategoriaPO extends AbstractPO{
 
 	private Long id;
 	private String nome;

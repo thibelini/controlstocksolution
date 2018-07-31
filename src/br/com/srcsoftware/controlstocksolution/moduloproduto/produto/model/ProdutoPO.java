@@ -16,7 +16,7 @@ import br.com.srcsoftware.managers.abstracts.AbstractPO;
  * @version 1.0
  */
 
-public class ProdutoPO extends AbstractPO{
+public final class ProdutoPO extends AbstractPO{
 	private Long id;
 	private String nome;
 	private BigDecimal preco;
