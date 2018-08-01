@@ -1,6 +1,10 @@
 package br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.controller;
 
+import java.util.List;
+
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaSERVICE;
+import br.com.srcsoftware.managers.abstracts.AbstractPO;
+import br.com.srcsoftware.managers.interfaces.Crud;
 
 /**
  * 
@@ -12,7 +16,7 @@ import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.Cat
  * @version 1.0
  */
 
-public final class CategoriaFACADE{
+public final class CategoriaFACADE implements Crud{
 
 	/** Garante a aplicacao da associacao entre o Service e o DAO */
 	/**
@@ -35,5 +39,35 @@ public final class CategoriaFACADE{
 
 	public CategoriaFACADE(){
 		SERVICE = new CategoriaSERVICE();
+	}
+
+	@Override
+	public void inserir( AbstractPO po ) {
+		System.out.println( "FACADE: inserindo" );
+		SERVICE.inserir( po );
+	}
+
+	@Override
+	public void alterar( AbstractPO po ) {
+		System.out.println( "FACADE: alterando" );
+		SERVICE.alterar( po );
+	}
+
+	@Override
+	public void excluir( AbstractPO po ) {
+		System.out.println( "FACADE: excluindo" );
+		SERVICE.excluir( po );
+	}
+
+	@Override
+	public List filtrar( AbstractPO po ) {
+		System.out.println( "FACADE: filtrando" );
+		return SERVICE.filtrar( po );
+	}
+
+	@Override
+	public AbstractPO filtrarPorId( String id ) {
+		System.out.println( "FACADE: Filtrando por Id" );
+		return SERVICE.filtrarPorId( id );
 	}
 }

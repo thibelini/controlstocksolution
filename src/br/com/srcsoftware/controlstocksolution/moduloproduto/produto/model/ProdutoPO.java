@@ -63,4 +63,69 @@ public final class ProdutoPO extends AbstractPO{
 		this.categoria = categoria;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ( ( categoria == null ) ? 0 : categoria.hashCode() );
+		result = prime * result + ( ( nome == null ) ? 0 : nome.hashCode() );
+		result = prime * result + ( ( unidadeMedida == null ) ? 0 : unidadeMedida.hashCode() );
+		return result;
+	}
+
+	@Override
+	public boolean equals( Object obj ) {
+		if ( this == obj ) {
+			return true;
+		}
+		if ( obj == null ) {
+			return false;
+		}
+		if ( !( obj instanceof ProdutoPO ) ) {
+			return false;
+		}
+		ProdutoPO other = (ProdutoPO) obj;
+		if ( categoria == null ) {
+			if ( other.categoria != null ) {
+				return false;
+			}
+		} else if ( !categoria.equals( other.categoria ) ) {
+			return false;
+		}
+		if ( nome == null ) {
+			if ( other.nome != null ) {
+				return false;
+			}
+		} else if ( !nome.equals( other.nome ) ) {
+			return false;
+		}
+		if ( unidadeMedida == null ) {
+			if ( other.unidadeMedida != null ) {
+				return false;
+			}
+		} else if ( !unidadeMedida.equals( other.unidadeMedida ) ) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append( "ProdutoPO [\n\tid=" );
+		builder.append( id );
+		builder.append( ", \n\tnome=" );
+		builder.append( nome );
+		builder.append( ", \n\tpreco=" );
+		builder.append( preco );
+		builder.append( ", \n\tunidadeMedida=" );
+		builder.append( unidadeMedida );
+		builder.append( ", \n\tcategoria=" );
+		builder.append( categoria );
+		builder.append( ", \n\tgetDataHoraCadastro()=" );
+		builder.append( getDataHoraCadastro() );
+		builder.append( "]\n" );
+		return builder.toString();
+	}
+
 }
