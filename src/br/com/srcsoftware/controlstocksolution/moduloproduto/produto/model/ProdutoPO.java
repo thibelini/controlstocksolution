@@ -1,6 +1,8 @@
 package br.com.srcsoftware.controlstocksolution.moduloproduto.produto.model;
 
 import java.math.BigDecimal;
+import java.text.Collator;
+import java.util.Locale;
 
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
@@ -16,7 +18,7 @@ import br.com.srcsoftware.managers.abstracts.AbstractPO;
  * @version 1.0
  */
 
-public final class ProdutoPO extends AbstractPO{
+public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO >{
 	private Long id;
 	private String nome;
 	private BigDecimal preco;
@@ -126,6 +128,12 @@ public final class ProdutoPO extends AbstractPO{
 		builder.append( getDataHoraCadastro() );
 		builder.append( "]\n" );
 		return builder.toString();
+	}
+
+	@Override
+	public int compareTo( ProdutoPO comparar ) {
+		Collator ignoraAcentos = Collator.getInstance( new Locale( "pt", "BR" ) );
+		return ignoraAcentos.compare( this.getNome(), comparar.getNome() );
 	}
 
 }

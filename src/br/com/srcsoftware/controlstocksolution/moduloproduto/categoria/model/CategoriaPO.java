@@ -1,5 +1,8 @@
 package br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model;
 
+import java.text.Collator;
+import java.util.Locale;
+
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
 
 /**
@@ -11,7 +14,7 @@ import br.com.srcsoftware.managers.abstracts.AbstractPO;
  * @version 1.0
  */
 
-public final class CategoriaPO extends AbstractPO{
+public final class CategoriaPO extends AbstractPO implements Comparable< CategoriaPO >{
 
 	private Long id;
 	private String nome;
@@ -73,6 +76,12 @@ public final class CategoriaPO extends AbstractPO{
 		builder.append( getDataHoraCadastro() );
 		builder.append( "]\n" );
 		return builder.toString();
+	}
+
+	@Override
+	public int compareTo( CategoriaPO comparar ) {
+		Collator ignoraAcentos = Collator.getInstance( new Locale( "pt", "BR" ) );
+		return ignoraAcentos.compare( this.getNome(), comparar.getNome() );
 	}
 
 }
