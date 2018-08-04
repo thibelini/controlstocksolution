@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaSERVICE;
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
+import br.com.srcsoftware.managers.exceptions.BackendExceptions;
 import br.com.srcsoftware.managers.interfaces.Crud;
 
 /**
@@ -42,31 +43,31 @@ public final class CategoriaFACADE implements Crud{
 	}
 
 	@Override
-	public void inserir( AbstractPO po ) {
+	public void inserir( AbstractPO po ) throws BackendExceptions {
 		System.out.println( "FACADE: inserindo" );
 		SERVICE.inserir( po );
 	}
 
 	@Override
-	public void alterar( AbstractPO po ) {
+	public void alterar( AbstractPO po ) throws BackendExceptions {
 		System.out.println( "FACADE: alterando" );
 		SERVICE.alterar( po );
 	}
 
 	@Override
-	public void excluir( AbstractPO po ) {
+	public void excluir( AbstractPO po ) throws BackendExceptions {
 		System.out.println( "FACADE: excluindo" );
 		SERVICE.excluir( po );
 	}
 
 	@Override
-	public List filtrar( AbstractPO po ) {
+	public List filtrar( AbstractPO po ) throws BackendExceptions {
 		System.out.println( "FACADE: filtrando" );
 		return SERVICE.filtrar( po );
 	}
 
 	@Override
-	public AbstractPO filtrarPorId( String id ) {
+	public AbstractPO filtrarPorId( String id ) throws BackendExceptions {
 		System.out.println( "FACADE: Filtrando por Id" );
 		return SERVICE.filtrarPorId( id );
 	}

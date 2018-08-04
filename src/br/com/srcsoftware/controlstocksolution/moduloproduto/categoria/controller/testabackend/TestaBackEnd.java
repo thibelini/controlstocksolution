@@ -3,8 +3,11 @@ package br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.controll
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.controller.CategoriaFACADE;
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
+import br.com.srcsoftware.managers.exceptions.BackendExceptions;
 
 /**
  * 
@@ -20,34 +23,42 @@ public final class TestaBackEnd{
 
 	public static void main( String[ ] args ) {
 
-		/** Criando uma categoria */
-		CategoriaPO po = new CategoriaPO();
-		po.setNome( "bebidas" );
-		po.setDataHoraCadastro( LocalDateTime.now() );
+		try {
+			/** Criando uma categoria */
+			CategoriaPO po = new CategoriaPO();
+			po.setNome( "bebidas" );
+			po.setDataHoraCadastro( LocalDateTime.now() );
 
-		/** Inserir Categoria */
-		new CategoriaFACADE().inserir( po );
+			/** Inserir Categoria */
+			new CategoriaFACADE().inserir( po );
 
-		/** Filtrando todos para saber se inseriu */
-		List encontrados = new CategoriaFACADE().filtrar( null );
-		System.out.println( encontrados );
+			/** Filtrando todos para saber se inseriu */
+			List encontrados = new CategoriaFACADE().filtrar( null );
+			System.out.println( encontrados );
 
-		/** Filtrando por ID para alterar */
-		CategoriaPO encontrado = (CategoriaPO) new CategoriaFACADE().filtrarPorId( "1" );
+			/** Filtrando por ID para alterar */
+			CategoriaPO encontrado = (CategoriaPO) new CategoriaFACADE().filtrarPorId( "1" );
 
-		/** Alterar Categoria */
-		encontrado.setNome( "Bebidas Alterada" );
-		new CategoriaFACADE().alterar( encontrado );
+			/** Alterar Categoria */
+			encontrado.setNome( "Bebidas Alterada" );
+			new CategoriaFACADE().alterar( encontrado );
 
-		/** Filtrando por ID para verificar alteraçao e excluir */
-		encontrado = (CategoriaPO) new CategoriaFACADE().filtrarPorId( "1" );
+			/** Filtrando por ID para verificar alteraçao e excluir */
+			encontrado = (CategoriaPO) new CategoriaFACADE().filtrarPorId( "1" );
 
-		/** Ecluindo */
-		new CategoriaFACADE().excluir( encontrado );
+			/** Ecluindo */
+			new CategoriaFACADE().excluir( encontrado );
 
-		/** Filtrando todos para saber se excluiu */
-		encontrados = new CategoriaFACADE().filtrar( null );
-		System.out.println( encontrados );
+			/** Filtrando todos para saber se excluiu */
+			encontrados = new CategoriaFACADE().filtrar( null );
+			System.out.println( encontrados );
+		} catch ( BackendExceptions e ) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog( null, e.getMessage() );
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog( null, e.getMessage() );
+		}
 
 	}
 

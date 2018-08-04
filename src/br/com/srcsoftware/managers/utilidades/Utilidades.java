@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 public abstract class Utilidades{
 
 	public static final String SCHEMA = "control_stock_solution_t34";
+	public static final String REGEX_SOMENTE_LETRAS_E_ESPACOS = "[a-z A-Z]+";
 
 	public static final LocalDate parseLocalDate( String data ) {
 		if ( data == null || data.isEmpty() || !data.contains( "/" ) ) {
