@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!--  Inicia a Configuracação do Hibernate -->
+<hibernate-configuration>
+
+	<!-- Cria uma fabrica de sessao na qual cada sessao é responsavel por gerenciar o POOL de Conexão -->
+	<session-factory>
+		<!-- Configuração padrao minima para o funcionamento e aquisicao da sessao das conexoes -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost/control_stock_solution_t34?createDatabaseIfNotExist=true</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		<property name="connection.pool_size">31</property>
+		<property name="connection.autocommit">false</property>
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="current_session_context_class">thread</property>
+		<property name=""></property>
+		<!-- É aqui que se informa se o Hibernate criará todas as tabelas automaticamente -->
+		<!-- create-drop = Apaga e cria o banco com base nas annotations cada vez que executa o BD -->
+		<!-- create = Cria a estrutura do banco de dados com base nos Models(POs) -->
+		<!-- update = Apenas atualiza a estrutura. Obs: Usado quando em Desenvolvimento -->
+		<!-- validate = Apenas valida a estrutura. Obs: Usado quando em Produção -->
+		<property name="hbm2ddl.auto">create-drop</property>
+		
+		<!-- Aqui informamos as classes PO que o Hibernate gerencia -->
+		<mapping class="br.com.srcsoftware.managers.abstracts.AbstractPO"/>
+		<mapping class="br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO"/>
+		<mapping class="br.com.srcsoftware.controlstocksolution.moduloproduto.produto.model.ProdutoPO"/>
+	</session-factory>
+	
+</hibernate-configuration>

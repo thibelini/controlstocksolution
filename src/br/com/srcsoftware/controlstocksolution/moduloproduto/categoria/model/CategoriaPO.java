@@ -3,6 +3,13 @@ package br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model;
 import java.text.Collator;
 import java.util.Locale;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
 
 /**
@@ -14,9 +21,15 @@ import br.com.srcsoftware.managers.abstracts.AbstractPO;
  * @version 1.0
  */
 
+@Entity
+@Table( name = "categorias" )
 public final class CategoriaPO extends AbstractPO implements Comparable< CategoriaPO >{
 
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private Long id;
+
+	@Column( length = 50, nullable = false, unique = true )
 	private String nome;
 
 	public Long getId() {

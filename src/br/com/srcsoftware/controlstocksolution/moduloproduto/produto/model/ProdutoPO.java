@@ -4,6 +4,17 @@ import java.math.BigDecimal;
 import java.text.Collator;
 import java.util.Locale;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
 
@@ -17,12 +28,25 @@ import br.com.srcsoftware.managers.abstracts.AbstractPO;
  * @since 24 de jul de 2018 22:01:34
  * @version 1.0
  */
-
+@Entity
+@Table( name = "produtos", uniqueConstraints = @UniqueConstraint( columnNames = { "nome", "unidadeMedida", "idCategoria" } ) )
 public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO >{
+
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private Long id;
+
+	@Column( length = 50, nullable = false )
 	private String nome;
+
+	@Column( precision = 8, scale = 2 )
 	private BigDecimal preco;
+
+	@Column( length = 3, nullable = false )
 	private String unidadeMedida;
+
+	@ManyToOne( fetch = FetchType.EAGER, optional = false ) //Padrão quando for ManyToOne
+	@JoinColumn( name = "idCategoria" ) //ToOne VEM
 	private CategoriaPO categoria;
 
 	public Long getId() {

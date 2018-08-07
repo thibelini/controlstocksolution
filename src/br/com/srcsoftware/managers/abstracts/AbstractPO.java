@@ -1,6 +1,20 @@
 package br.com.srcsoftware.managers.abstracts;
 
+/**
+ * @MappedSuperclass: Informa ao Hibernate que esta classe não
+ *                    possuira Tabela, ela é apenas uma SuperClasse
+ * 
+ *                    OU SEJA
+ * 
+ *                    Mapeia esta classe como apenas uma classe de Herança, onde todos
+ *                    seu atributos serão implementados nas tabelas que representam as
+ *                    classes FILHAS
+ */
+
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
 /**
  * 
@@ -12,8 +26,10 @@ import java.time.LocalDateTime;
  * @version 1.0
  */
 
+@MappedSuperclass
 public abstract class AbstractPO{
 
+	@Column( name = "dataHoraCadastro", nullable = false )
 	private LocalDateTime dataHoraCadastro;
 
 	public LocalDateTime getDataHoraCadastro() {
