@@ -7,6 +7,7 @@ import java.util.Locale;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ import br.com.srcsoftware.managers.abstracts.AbstractPO;
  * @version 1.0
  */
 @Entity
-@Table( name = "produtos", uniqueConstraints = @UniqueConstraint( columnNames = { "nome", "unidadeMedida", "idCategoria" } ) )
+@Table( name = "produtos", uniqueConstraints = @UniqueConstraint( columnNames = { "nome", "unidadeMedida", "idCategoria" }, name = "PK_produtos_id" ) )
 public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO >{
 
 	@Id
@@ -46,7 +47,7 @@ public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO
 	private String unidadeMedida;
 
 	@ManyToOne( fetch = FetchType.EAGER, optional = false ) //Padrão quando for ManyToOne
-	@JoinColumn( name = "idCategoria" ) //ToOne VEM
+	@JoinColumn( name = "idCategoria", foreignKey = @ForeignKey( name = "FK_produto_idCategoria" ) ) //ToOne VEM
 	private CategoriaPO categoria;
 
 	public Long getId() {
