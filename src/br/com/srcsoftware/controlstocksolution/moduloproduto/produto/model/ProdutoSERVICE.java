@@ -1,10 +1,10 @@
 package br.com.srcsoftware.controlstocksolution.moduloproduto.produto.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.srcsoftware.controlstocksolution.moduloproduto.produto.dao.ProdutoDAO;
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
+import br.com.srcsoftware.managers.connection.HibernateConnection;
 import br.com.srcsoftware.managers.exceptions.BackendExceptions;
 import br.com.srcsoftware.managers.interfaces.Crud;
 import br.com.srcsoftware.managers.utilidades.Utilidades;
@@ -35,7 +35,12 @@ public final class ProdutoSERVICE implements Crud{
 
 	@Override
 	public void inserir( final AbstractPO PO ) throws BackendExceptions {
+
+		HibernateConnection hibernate = new HibernateConnection();
+
 		try {
+			hibernate.iniciarTransacao();
+
 			if ( PO == null ) {
 				throw new BackendExceptions( "Objeto nulo passado como paramentro" );
 			}
@@ -52,17 +57,27 @@ public final class ProdutoSERVICE implements Crud{
 				throw new BackendExceptions( "O Nome nao sao permitidos caracteres numericos" );
 			}
 
+			DAO.inserir( hibernate, produto );
+			hibernate.confirmarTransacao();
+
 			System.out.println( "SERVICE: inserindo" );
 		} catch ( BackendExceptions e ) {
+			hibernate.rollbackTransacao();
 			throw e;
 		} catch ( Exception e ) {
+			hibernate.rollbackTransacao();
 			throw new BackendExceptions( "Erro desconhecido ao inserir", e );
 		}
 	}
 
 	@Override
 	public void alterar( final AbstractPO PO ) throws BackendExceptions {
+
+		HibernateConnection hibernate = new HibernateConnection();
+
 		try {
+			hibernate.iniciarTransacao();
+
 			if ( PO == null ) {
 				throw new BackendExceptions( "Objeto nulo passado como paramentro" );
 			}
@@ -79,17 +94,27 @@ public final class ProdutoSERVICE implements Crud{
 				throw new BackendExceptions( "O Nome nao sao permitidos caracteres numericos" );
 			}
 
+			DAO.alterar( hibernate, produto );
+			hibernate.confirmarTransacao();
+
 			System.out.println( "SERVICE: alterando" );
 		} catch ( BackendExceptions e ) {
+			hibernate.rollbackTransacao();
 			throw e;
 		} catch ( Exception e ) {
+			hibernate.rollbackTransacao();
 			throw new BackendExceptions( "Erro desconhecido ao alterar", e );
 		}
 	}
 
 	@Override
 	public void excluir( final AbstractPO PO ) throws BackendExceptions {
+
+		HibernateConnection hibernate = new HibernateConnection();
+
 		try {
+			hibernate.iniciarTransacao();
+
 			if ( PO == null ) {
 				throw new BackendExceptions( "Objeto nulo passado como paramentro" );
 			}
@@ -102,10 +127,15 @@ public final class ProdutoSERVICE implements Crud{
 				throw new BackendExceptions( "Objeto PO Passado nao condiz com o contexto" );
 			}
 
+			DAO.excluir( hibernate, produto );
+			hibernate.confirmarTransacao();
+
 			System.out.println( "SERVICE: excluindo" );
 		} catch ( BackendExceptions e ) {
+			hibernate.rollbackTransacao();
 			throw e;
 		} catch ( Exception e ) {
+			hibernate.rollbackTransacao();
 			throw new BackendExceptions( "Erro desconhecido ao excluir", e );
 		}
 	}
@@ -113,9 +143,6 @@ public final class ProdutoSERVICE implements Crud{
 	@Override
 	public List filtrar( final AbstractPO PO ) throws BackendExceptions {
 		try {
-			if ( PO == null ) {
-				throw new BackendExceptions( "Objeto nulo passado como paramentro" );
-			}
 
 			ProdutoPO produto = null;
 
@@ -129,7 +156,7 @@ public final class ProdutoSERVICE implements Crud{
 
 			System.out.println( "SERVICE: filtrando" );
 
-			return new ArrayList<>();
+			return DAO.filtrar( produto );
 
 		} catch ( BackendExceptions e ) {
 			throw e;
@@ -148,7 +175,7 @@ public final class ProdutoSERVICE implements Crud{
 
 			System.out.println( "SERVICE: filtrando por Id" );
 
-			return new ProdutoPO();
+			return DAO.filtrarPorId( Long.valueOf( ID ) );
 
 		} catch ( BackendExceptions e ) {
 			throw e;

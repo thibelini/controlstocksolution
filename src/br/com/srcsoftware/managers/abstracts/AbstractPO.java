@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
+
+import br.com.srcsoftware.managers.utilidades.Utilidades;
 
 /**
  * 
@@ -38,6 +41,22 @@ public abstract class AbstractPO{
 
 	public void setDataHoraCadastro( LocalDateTime dataHoraCadastro ) {
 		this.dataHoraCadastro = dataHoraCadastro;
+	}
+
+	@Transient
+	public String getDataHoraCadastroToString() {
+		if ( getDataHoraCadastro() != null ) {
+			return Utilidades.parseLocalDateTime( dataHoraCadastro );
+		}
+		return null;
+	}
+
+	public void setDataHoraCadastroToString( String dataHoraCadastro ) {
+		if ( dataHoraCadastro != null && !dataHoraCadastro.isEmpty() ) {
+			setDataHoraCadastro( Utilidades.parseLocalDateTime( dataHoraCadastro ) );
+			return;
+		}
+		setDataHoraCadastro( null );
 	}
 
 	@Override

@@ -14,10 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
+import br.com.srcsoftware.managers.utilidades.Utilidades;
 
 /**
  * 
@@ -58,6 +60,22 @@ public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO
 		this.id = id;
 	}
 
+	@Transient
+	public String getIdToString() {
+		if ( getId() != null ) {
+			return id.toString();
+		}
+		return null;
+	}
+
+	public void setIdToString( String id ) {
+		if ( id != null && !id.isEmpty() ) {
+			setId( Long.valueOf( id ) );
+			return;
+		}
+		setId( null );
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -74,6 +92,22 @@ public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO
 		this.preco = preco;
 	}
 
+	@Transient
+	public String getPrecoToString() {
+		if ( getPreco() != null ) {
+			return Utilidades.parseBigDecimal( preco );
+		}
+		return null;
+	}
+
+	public void setPrecoToString( String preco ) {
+		if ( preco != null && !preco.isEmpty() ) {
+			setPreco( Utilidades.parseBigDecimal( preco ) );
+			return;
+		}
+		setPreco( null );
+	}
+
 	public String getUnidadeMedida() {
 		return unidadeMedida;
 	}
@@ -83,6 +117,10 @@ public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO
 	}
 
 	public CategoriaPO getCategoria() {
+		if ( categoria == null ) {
+			categoria = new CategoriaPO();
+		}
+
 		return categoria;
 	}
 

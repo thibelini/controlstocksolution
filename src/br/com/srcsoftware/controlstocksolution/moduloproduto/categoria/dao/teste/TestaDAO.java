@@ -1,6 +1,7 @@
 package br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.dao.teste;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -42,6 +43,12 @@ public class TestaDAO{
 			/** Filtrar PO por Id */
 			AbstractPO encontrado = hibernate.filtrarPorId( Long.valueOf( "1" ), CategoriaPO.class );
 			System.out.println( "Filtrado por Id: " + encontrado );
+
+			/** Filtrar todos */
+			CategoriaPO poFiltrar = new CategoriaPO();
+			poFiltrar.setNome( "teste" );
+			List< CategoriaPO > encontrados = dao.filtrar( poFiltrar );
+			System.out.println( "Filtrar: " + encontrados );
 
 			hibernate.iniciarTransacao();
 			/** Excluindo PO */

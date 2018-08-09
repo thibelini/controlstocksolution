@@ -14,6 +14,23 @@ import br.com.srcsoftware.managers.exceptions.BackendExceptions;
 
 public final class CategoriaDAO{
 
+	public void inserir( HibernateConnection hibernate, CategoriaPO po ) throws BackendExceptions {
+		CategoriaPO poInserido = (CategoriaPO) hibernate.inserir( po );
+		po.setId( poInserido.getId() );
+	}
+
+	public void alterar( HibernateConnection hibernate, CategoriaPO po ) throws BackendExceptions {
+		hibernate.alterar( po );
+	}
+
+	public void excluir( HibernateConnection hibernate, CategoriaPO po ) throws BackendExceptions {
+		hibernate.excluir( po );
+	}
+
+	public CategoriaPO filtrarPorId( Long id ) throws BackendExceptions {
+		return (CategoriaPO) new HibernateConnection().filtrarPorId( id, CategoriaPO.class );
+	}
+
 	public List< CategoriaPO > filtrar( CategoriaPO poFiltrar ) throws BackendExceptions {
 
 		HibernateConnection hibernate = new HibernateConnection();
@@ -32,7 +49,7 @@ public final class CategoriaDAO{
 
 			/** Definindo os parametros do Parametros para consulta (WHERE) */
 			ArrayList< Predicate > predicates = new ArrayList< Predicate >();
-			if ( poFiltrar == null ) {
+			if ( poFiltrar != null ) {
 				if ( poFiltrar.getNome() != null && !poFiltrar.getNome().isEmpty() ) {
 					Predicate nomeParam = builder.like( root.get( "nome" ), poFiltrar.getNome().concat( "%" ) );
 					predicates.add( nomeParam );

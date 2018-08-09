@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
 
@@ -38,6 +39,22 @@ public final class CategoriaPO extends AbstractPO implements Comparable< Categor
 
 	public void setId( Long id ) {
 		this.id = id;
+	}
+
+	@Transient
+	public String getIdToString() {
+		if ( getId() != null ) {
+			return id.toString();
+		}
+		return null;
+	}
+
+	public void setIdToString( String id ) {
+		if ( id != null && !id.isEmpty() ) {
+			setId( Long.valueOf( id ) );
+			return;
+		}
+		setId( null );
 	}
 
 	public String getNome() {

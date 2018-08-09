@@ -2,6 +2,7 @@ package br.com.srcsoftware.managers.utilidades;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Utilidades{
@@ -50,5 +51,23 @@ public abstract class Utilidades{
 		}
 
 		return moeda + " " + String.format( "%,.2f", valor ).trim();
+	}
+
+	public static final LocalDateTime parseLocalDateTime( String data ) {
+		if ( data == null || data.isEmpty() || !data.contains( "/" ) ) {
+			return null;
+		}
+
+		LocalDateTime novaData = LocalDateTime.parse( data, DateTimeFormatter.ofPattern( "dd//MM/yyyy HH:mm:SS" ) );
+		return novaData;
+	}
+
+	public static final String parseLocalDateTime( LocalDateTime data ) {
+		if ( data == null ) {
+			return null;
+		}
+
+		String novaData = data.format( DateTimeFormatter.ofPattern( "dd//MM/yyyy HH:mm:SS" ) );
+		return novaData;
 	}
 }

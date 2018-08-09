@@ -33,7 +33,7 @@ import br.com.srcsoftware.managers.utilidades.Utilidades;
 public final class HibernateConnection{
 
 	private StandardServiceRegistry registry;
-	private SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory;
 	private Session currentSession;
 	private Transaction transaction;
 
