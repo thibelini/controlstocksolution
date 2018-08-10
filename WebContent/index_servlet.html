@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>HELLO JAVA WEB</h1>
+	<h3>Thiago Belini</h3>
+	<h4>Assis/SP</h4>
+	<form action="hello" method="post" name="form">
+		<label>Texto: </label>
+		<input type="text" name="texto" id="texto" >
+		<input type="submit" value="Enviar Via POST">
+	</form>
+	<br>
+	<a href="#" onclick="this.href='hello?texto='+document.getElementById('texto').value" >Enviar via GET</a>
+</body>
+</html>
