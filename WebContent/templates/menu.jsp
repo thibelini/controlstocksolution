@@ -26,9 +26,9 @@
 				<!-- /.nav-second-level -->
 			</li>
 			<li>
-				<a href="${rootweb}/categoriaAction.do?method=abrirTela">
-					<i class="fa fa-table fa-fw"></i>
-					Tables
+				<a href="${rootWeb}/categoriaAction.do?method=abrirTela">
+					<i class="fa fa-cubes fa-fw"></i>
+					Categoria
 				</a>
 			</li>
 		</ul>

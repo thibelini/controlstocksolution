@@ -8,12 +8,13 @@
 		<!-- name: Apelido dado para a classe Form para acesso nos JSPs -->
 		<!-- type: Nome da Classe juntamente com seu package -->
 		<form-bean name="categoriaForm" type="br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.view.CategoriaForm" />
+		<form-bean name="desktopForm" type="br.com.srcsoftware.controlstocksolution.desktop.view.DesktopForm" />
 		<!-- form-bean name="categoriaForm" type="br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.view.CategoriaForm" /-->
 	</form-beans>
 	
 	<!-- AQUI MAPEAMOS AS NOSSAS CLASSES ACTIONs DE FORMA A UNIR FORM/TELAS/ACTION -->
 	<action-mappings>
-		<!-- path: Apelido dado a Classe Action de cada Contexto -->
+		<!-- path: Apelido dado a Classe Action de cada Contexto --> 
 		<!-- type: Classe Action cujo apelido foi informado em path -->
 		<!-- name: Apelido dado a Classe Form desejada -->
 		<!-- parameter: Variavel que conterá o nome do método a ser chamado ao submeter o jsp. Para sua utilização é necessário que no JSP tenha um campo hidden com seu nome. Ex: <h:hidden property="acao" value="empty"/> 
@@ -25,6 +26,14 @@
 				parameter="method" 
 				scope="session">
 			<forward name="categoriaView" path=".categoriaView" />
+		</action>
+		
+		<action path="/desktopAction" 
+				type="br.com.srcsoftware.controlstocksolution.desktop.view.DesktopAction" 
+				name="DesktopForm" 
+				parameter="method" 
+				scope="session">
+			<forward name="desktopView" path=".desktopView" />
 		</action>
 	</action-mappings>
 

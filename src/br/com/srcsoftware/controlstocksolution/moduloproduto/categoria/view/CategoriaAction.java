@@ -42,4 +42,14 @@ public class CategoriaAction extends DispatchAction{
 		return mapping.findForward( "categoriaView" );
 	}
 
+	public ActionForward nada( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response ) {
+
+		/* aplicando a Especializacao de ActionForm para CategoriaForm */
+		CategoriaForm meuForm = (CategoriaForm) form;
+
+		meuForm.limparTela();
+
+		return mapping.findForward( "categoriaView" );
+	}
+
 }

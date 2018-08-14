@@ -23,7 +23,7 @@
 		<!-- create = Cria a estrutura do banco de dados com base nos Models(POs) -->
 		<!-- update = Apenas atualiza a estrutura. Obs: Usado quando em Desenvolvimento -->
 		<!-- validate = Apenas valida a estrutura. Obs: Usado quando em Produção -->
-		<property name="hbm2ddl.auto">create-drop</property>
+		<property name="hbm2ddl.auto">update</property>
 		
 		<!-- Aqui informamos as classes PO que o Hibernate gerencia -->
 		<mapping class="br.com.srcsoftware.managers.abstracts.AbstractPO"/>

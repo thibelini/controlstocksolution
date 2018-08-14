@@ -1,215 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Forms</h1>
+		<h1 class="page-header">Cadastro de Categoria</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
 <div class="row">
 	<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">Basic Form Elements</div>
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-lg-6">
-						<form role="form">
-							<div class="form-group">
-								<label>Text Input</label>
-								<input class="form-control">
-								<p class="help-block">Example block-level help text here.</p>
-							</div>
-							<div class="form-group">
-								<label>Text Input with Placeholder</label>
-								<input class="form-control" placeholder="Enter text">
-							</div>
-							<div class="form-group">
-								<label>Static Control</label>
-								<p class="form-control-static">email@example.com</p>
-							</div>
-							<div class="form-group">
-								<label>File input</label>
-								<input type="file">
-							</div>
-							<div class="form-group">
-								<label>Text area</label>
-								<textarea class="form-control" rows="3"></textarea>
-							</div>
-							<div class="form-group">
-								<label>Checkboxes</label>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" value="">
-										Checkbox 1
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" value="">
-										Checkbox 2
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" value="">
-										Checkbox 3
-									</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<label>Inline Checkboxes</label>
-								<label class="checkbox-inline">
-									<input type="checkbox">
-									1
-								</label>
-								<label class="checkbox-inline">
-									<input type="checkbox">
-									2
-								</label>
-								<label class="checkbox-inline">
-									<input type="checkbox">
-									3
-								</label>
-							</div>
-							<div class="form-group">
-								<label>Radio Buttons</label>
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-										Radio 1
-									</label>
-								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-										Radio 2
-									</label>
-								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-										Radio 3
-									</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<label>Inline Radio Buttons</label>
-								<label class="radio-inline">
-									<input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>
-									1
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">
-									2
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">
-									3
-								</label>
-							</div>
-							<div class="form-group">
-								<label>Selects</label>
-								<select class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Multiple Selects</label>
-								<select multiple class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-							<button type="submit" class="btn btn-default">Submit Button</button>
-							<button type="reset" class="btn btn-default">Reset Button</button>
-						</form>
+	
+		<html:form action="categoriaAction.do" method="post" styleId="tagForm"> 
+			<html:hidden property="method" value="nada" styleId="method"/>	
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group col-lg-2 col-md-2 col-sm-12 col-xs-12">
+							<label>Código</label>
+							<html:text styleClass="form-control input-md" name="categoriaForm" property="categoria.idToString" styleId="id"/>
+						</div>
+					</div>	
+					<div class="row">
+						<div class="form-group col-lg-5 col-md-12 col-sm-12 col-xs-12">
+							<label>Nome</label>
+							<html:text styleClass="form-control input-md" name="categoriaForm" property="categoria.nome" styleId="nome"/>
+						</div>
 					</div>
-					<!-- /.col-lg-6 (nested) -->
-					<div class="col-lg-6">
-						<h1>Disabled Form States</h1>
-						<form role="form">
-							<fieldset disabled>
-								<div class="form-group">
-									<label for="disabledSelect">Disabled input</label>
-									<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-								</div>
-								<div class="form-group">
-									<label for="disabledSelect">Disabled select menu</label>
-									<select id="disabledSelect" class="form-control">
-										<option>Disabled select</option>
-									</select>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox">
-										Disabled Checkbox
-									</label>
-								</div>
-								<button type="submit" class="btn btn-primary">Disabled Button</button>
-							</fieldset>
-						</form>
-						<h1>Form Validation States</h1>
-						<form role="form">
-							<div class="form-group has-success">
-								<label class="control-label" for="inputSuccess">Input with success</label>
-								<input type="text" class="form-control" id="inputSuccess">
-							</div>
-							<div class="form-group has-warning">
-								<label class="control-label" for="inputWarning">Input with warning</label>
-								<input type="text" class="form-control" id="inputWarning">
-							</div>
-							<div class="form-group has-error">
-								<label class="control-label" for="inputError">Input with error</label>
-								<input type="text" class="form-control" id="inputError">
-							</div>
-						</form>
-						<h1>Input Groups</h1>
-						<form role="form">
-							<div class="form-group input-group">
-								<span class="input-group-addon">@</span>
-								<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<div class="form-group input-group">
-								<input type="text" class="form-control">
-								<span class="input-group-addon">.00</span>
-							</div>
-							<div class="form-group input-group">
-								<span class="input-group-addon">
-									<i class="fa fa-eur"></i>
-								</span>
-								<input type="text" class="form-control" placeholder="Font Awesome Icon">
-							</div>
-							<div class="form-group input-group">
-								<span class="input-group-addon">$</span>
-								<input type="text" class="form-control">
-								<span class="input-group-addon">.00</span>
-							</div>
-							<div class="form-group input-group">
-								<input type="text" class="form-control">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div>
-						</form>
-					</div>
-					<!-- /.col-lg-6 (nested) -->
+					<div class="row">
+						<div class="table-responsive col-lg-12">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr class="bg-primary">
+										<th>Código</th>
+										<th>Nome</th>
+										<th>Ação</th>
+									</tr>
+								</thead>
+								<tbody>
+								<!-- PROPRIEDADES:
+								id - Objeto corrente do FOR
+								indexId - è o contador como por exemplo o (i)
+								name - Nome do Form onde a lista esta
+								property - Nome do atributo que representa a lista
+								type = Tipo do Objeto que esta dentro(ArrayList<type>) da lista -->
+									<logic:iterate id="categoriaCorrente" indexId="i" name="categoriaForm" property="categorias" type="br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO">
+										<tr>
+											<td>${ categoriaCorrente.idToString }</td>
+											<td>${ categoriaCorrente.nome }</td>
+											<td class="text-center">
+												<a href="${rootWeb }/categoriaAction.do?method=selecionar&idSelecionar=${ categoriaCorrente.idToString }">
+													<i class="btn btn-xs btn-primary btn-outline glyphicon glyphicon-edit"></i>
+												</a>
+											</td>
+										</tr>
+									</logic:iterate>
+								</tbody>
+							</table>
+						</div>
+					</div>	
 				</div>
-				<!-- /.row (nested) -->
+				<div class="panel-footer">
+					<div class="row">
+						<logic:empty name="categoriaForm" property="categoria.idToString">
+							<div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+								<button type="submit" class="btn btn-success" id="inserir">
+									<i class="glyphicon glyphicon-floppy-save"></i>
+									Inserir
+								</button>
+							</div>
+						</logic:empty>
+						<logic:notEmpty name="categoriaForm" property="categoria.idToString">
+							<div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+								<button type="submit" class="btn btn-primary" id="alterar">
+									<i class="glyphicon glyphicon-floppy-retweet"></i>
+									Alterar
+								</button>
+							</div>
+							<div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+								<button type="button" class="btn btn-danger" id="excluir">
+									<i class="glyphicon glyphicon-floppy-remove"></i>
+									Excluir
+								</button>
+							</div>
+						</logic:notEmpty>
+						<div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+							<button type="button" class="btn btn-info" id="filtrar">
+								<i class="glyphicon glyphicon-zoom-out"></i>
+								Filtrar
+							</button>
+						</div>
+						<div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+							<button type="button" class="btn btn-warning" id="limpar">
+								<i class="glyphicon glyphicon-erase"></i>
+								Limpar
+							</button>
+						</div>
+					</div> 
+				</div>
 			</div>
-			<!-- /.panel-body -->
-		</div>
-		<!-- /.panel -->
+		
+		</html:form>
 	</div>
-	<!-- /.col-lg-12 -->
 </div>
-<!-- /.row -->
+
+<jsp:include page="../../templates/imports/imports-js.jsp"></jsp:include>
+
+<script type="text/javascript">
+	
+	$("document").ready(function(){
+		$("#nome").focus();
+		$("#tagForm").attr('autocomplete','off');
+		$("#id").prop('disabled', true);
+		
+	});
+	
+</script>

@@ -8,6 +8,7 @@ import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.Cat
 
 public final class CategoriaForm extends ActionForm{
 
+	private String idSelecionar;
 	private CategoriaPO categoria;
 	private ArrayList< CategoriaPO > categorias;
 
@@ -34,7 +35,16 @@ public final class CategoriaForm extends ActionForm{
 		this.categorias = categorias;
 	}
 
+	public String getIdSelecionar() {
+		return idSelecionar;
+	}
+
+	public void setIdSelecionar( String idSelecionar ) {
+		this.idSelecionar = idSelecionar;
+	}
+
 	public void limparTela() {
+		setIdSelecionar( null );
 		setCategoria( null );
 		getCategorias().clear();
 	}

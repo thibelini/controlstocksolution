@@ -12,4 +12,7 @@
 	<definition name=".categoriaView" extends="templateDefault" >
 		<put name="body" value="/paginas/categoria/categoria-formulario.jsp"/>
 	</definition>
+	<definition name=".desktopView" extends="templateDefault" >
+		<!-- Mapeie o JSP de Boas Vindas -->
+	</definition>
 </tiles-definitions>
