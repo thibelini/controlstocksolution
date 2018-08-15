@@ -1,5 +1,7 @@
 package br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.view;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,6 +9,11 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
+
+import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.controller.CategoriaFACADE;
+import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
+import br.com.srcsoftware.managers.exceptions.BackendExceptions;
+import br.com.srcsoftware.managers.utilidades.Messages;
 
 /***
  * /**
@@ -39,17 +46,128 @@ public class CategoriaAction extends DispatchAction{
 
 		meuForm.limparTela();
 
+		return filtrar( mapping, meuForm, request, response );
+	}
+
+	public ActionForward limpar( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response ) {
+		return abrirTela( mapping, form, request, response );
+	}
+
+	public ActionForward filtrar( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response ) {
+
+		try {
+			/* aplicando a Especializacao de ActionForm para CategoriaForm */
+			CategoriaForm meuForm = (CategoriaForm) form;
+
+			List< CategoriaPO > encontrados;
+
+			CategoriaFACADE facade = new CategoriaFACADE();
+			encontrados = facade.filtrar( meuForm.getCategoria() );
+
+			meuForm.getCategorias().clear();
+			meuForm.getCategorias().addAll( encontrados );
+
+		} catch ( BackendExceptions e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", e.getMessage() ) );
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", "Erro Desconhecido: " + e.getMessage() ) );
+		}
+
 		return mapping.findForward( "categoriaView" );
 	}
 
-	public ActionForward nada( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response ) {
+	public ActionForward inserir( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response ) {
 
-		/* aplicando a Especializacao de ActionForm para CategoriaForm */
-		CategoriaForm meuForm = (CategoriaForm) form;
+		try {
+			/* aplicando a Especializacao de ActionForm para CategoriaForm */
+			CategoriaForm meuForm = (CategoriaForm) form;
 
-		meuForm.limparTela();
+			CategoriaFACADE facade = new CategoriaFACADE();
+			facade.inserir( meuForm.getCategoria() );
+
+			meuForm.limparTela();
+			this.addMessages( request, Messages.createMessages( "mensagem", "Categoria cadastrado com Sucesso!" ) );
+
+		} catch ( BackendExceptions e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", e.getMessage() ) );
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", "Erro Desconhecido: " + e.getMessage() ) );
+		}
+
+		return filtrar( mapping, form, request, response );
+	}
+
+	public ActionForward alterar( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response ) {
+
+		try {
+			/* aplicando a Especializacao de ActionForm para CategoriaForm */
+			CategoriaForm meuForm = (CategoriaForm) form;
+
+			CategoriaFACADE facade = new CategoriaFACADE();
+			facade.alterar( meuForm.getCategoria() );
+
+			meuForm.limparTela();
+			this.addMessages( request, Messages.createMessages( "mensagem", "Categoria atualizada com Sucesso!" ) );
+
+		} catch ( BackendExceptions e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", e.getMessage() ) );
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", "Erro Desconhecido: " + e.getMessage() ) );
+		}
+
+		return filtrar( mapping, form, request, response );
+	}
+
+	public ActionForward excluir( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response ) {
+
+		try {
+			/* aplicando a Especializacao de ActionForm para CategoriaForm */
+			CategoriaForm meuForm = (CategoriaForm) form;
+
+			CategoriaFACADE facade = new CategoriaFACADE();
+			facade.excluir( meuForm.getCategoria() );
+
+			meuForm.limparTela();
+			this.addMessages( request, Messages.createMessages( "mensagem", "Categoria excluida com Sucesso!" ) );
+
+		} catch ( BackendExceptions e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", e.getMessage() ) );
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", "Erro Desconhecido: " + e.getMessage() ) );
+		}
+
+		return filtrar( mapping, form, request, response );
+	}
+
+	public ActionForward selecionar( ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response ) {
+
+		try {
+			/* aplicando a Especializacao de ActionForm para CategoriaForm */
+			CategoriaForm meuForm = (CategoriaForm) form;
+
+			CategoriaPO encontrado;
+
+			CategoriaFACADE facade = new CategoriaFACADE();
+			encontrado = (CategoriaPO) facade.filtrarPorId( meuForm.getIdSelecionar() );
+
+			meuForm.setCategoria( encontrado );
+
+		} catch ( BackendExceptions e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", e.getMessage() ) );
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			this.addErrors( request, Messages.createMessages( "erro", "Erro Desconhecido: " + e.getMessage() ) );
+		}
 
 		return mapping.findForward( "categoriaView" );
 	}
-
 }

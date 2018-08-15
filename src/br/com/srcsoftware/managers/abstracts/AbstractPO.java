@@ -35,6 +35,10 @@ public abstract class AbstractPO{
 	@Column( name = "dataHoraCadastro", nullable = false )
 	private LocalDateTime dataHoraCadastro;
 
+	public AbstractPO(){
+		setDataHoraCadastro( LocalDateTime.now() );
+	}
+
 	public LocalDateTime getDataHoraCadastro() {
 		return dataHoraCadastro;
 	}

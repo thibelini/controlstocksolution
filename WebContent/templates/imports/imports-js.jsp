@@ -18,3 +18,36 @@
 
 <!-- MODAL (Bootstrap Dialog) -->
 <script src="${rootWeb}/assets/dialog/dist/js/bootstrap-dialog.js"></script>
+
+<script type="text/javascript">
+	
+	$("document").ready(function(){
+		
+		$(".bloqueado").prop('disabled', true);
+		
+		$(".obrigatorio").prop('required', 'required').css('border-color', 'orange');
+		
+		$('.dinheiro').mask('000.000.000.000,00', {
+			placeholder : "0,00",
+			reverse : true
+		});
+		
+		$('.data').mask('00/00/0000', {
+			placeholder : "_//_",
+			clearIfNotMatch : true,
+			reverse : false
+		});
+
+		$('#cpf').mask('000.000.000-00', {
+			placeholder : "000.000.000-00",
+			clearIfNotMatch : true,
+			reverse : false
+		});
+
+		$('#cep').mask('00.000-000', {
+			placeholder : "00.000-000",
+			clearIfNotMatch : true
+		});
+	});
+	
+</script>

@@ -58,7 +58,7 @@ public abstract class Utilidades{
 			return null;
 		}
 
-		LocalDateTime novaData = LocalDateTime.parse( data, DateTimeFormatter.ofPattern( "dd//MM/yyyy HH:mm:SS" ) );
+		LocalDateTime novaData = LocalDateTime.parse( data, DateTimeFormatter.ofPattern( "dd/MM/yyyy HH:mm:SS" ) );
 		return novaData;
 	}
 
@@ -67,7 +67,7 @@ public abstract class Utilidades{
 			return null;
 		}
 
-		String novaData = data.format( DateTimeFormatter.ofPattern( "dd//MM/yyyy HH:mm:SS" ) );
+		String novaData = data.format( DateTimeFormatter.ofPattern( "dd/MM/yyyy HH:mm:SS" ) );
 		return novaData;
 	}
 }

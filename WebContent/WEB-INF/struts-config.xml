@@ -30,7 +30,7 @@
 		
 		<action path="/desktopAction" 
 				type="br.com.srcsoftware.controlstocksolution.desktop.view.DesktopAction" 
-				name="DesktopForm" 
+				name="desktopForm" 
 				parameter="method" 
 				scope="session">
 			<forward name="desktopView" path=".desktopView" />

@@ -44,7 +44,6 @@
 	</div>
 	<!-- /#wrapper -->
 
-	<jsp:include page="imports/imports-js.jsp"></jsp:include>
 
 </body>
 </html>
