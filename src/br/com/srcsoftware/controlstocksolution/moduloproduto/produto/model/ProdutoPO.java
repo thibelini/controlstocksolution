@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
+import br.com.srcsoftware.controlstocksolution.moduloproduto.unidade.model.UnidadePO;
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
 import br.com.srcsoftware.managers.utilidades.Utilidades;
 
@@ -32,7 +33,7 @@ import br.com.srcsoftware.managers.utilidades.Utilidades;
  * @version 1.0
  */
 @Entity
-@Table( name = "produtos", uniqueConstraints = @UniqueConstraint( columnNames = { "nome", "unidadeMedida", "idCategoria" }, name = "PK_produtos_id" ) )
+@Table( name = "produtos", uniqueConstraints = @UniqueConstraint( columnNames = { "nome", "idUnidade", "idCategoria" }, name = "PK_produtos_id" ) )
 public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO >{
 
 	@Id
@@ -45,12 +46,13 @@ public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO
 	@Column( precision = 8, scale = 2 )
 	private BigDecimal preco;
 
-	@Column( length = 3, nullable = false )
-	private String unidadeMedida;
-
 	@ManyToOne( fetch = FetchType.EAGER, optional = false ) //Padrão quando for ManyToOne
 	@JoinColumn( name = "idCategoria", foreignKey = @ForeignKey( name = "FK_produto_idCategoria" ) ) //ToOne VEM
 	private CategoriaPO categoria;
+
+	@ManyToOne( fetch = FetchType.EAGER, optional = false ) //Padrão quando for ManyToOne
+	@JoinColumn( name = "idUnidade", foreignKey = @ForeignKey( name = "FK_produto_idUnidade" ) ) //ToOne VEM
+	private UnidadePO unidade;
 
 	public Long getId() {
 		return id;
@@ -108,24 +110,26 @@ public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO
 		setPreco( null );
 	}
 
-	public String getUnidadeMedida() {
-		return unidadeMedida;
-	}
-
-	public void setUnidadeMedida( String unidadeMedida ) {
-		this.unidadeMedida = unidadeMedida;
-	}
-
 	public CategoriaPO getCategoria() {
 		if ( categoria == null ) {
 			categoria = new CategoriaPO();
 		}
-
 		return categoria;
 	}
 
 	public void setCategoria( CategoriaPO categoria ) {
 		this.categoria = categoria;
+	}
+
+	public UnidadePO getUnidade() {
+		if ( unidade == null ) {
+			unidade = new UnidadePO();
+		}
+		return unidade;
+	}
+
+	public void setUnidade( UnidadePO unidade ) {
+		this.unidade = unidade;
 	}
 
 	@Override
@@ -134,7 +138,8 @@ public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO
 		int result = 1;
 		result = prime * result + ( ( categoria == null ) ? 0 : categoria.hashCode() );
 		result = prime * result + ( ( nome == null ) ? 0 : nome.hashCode() );
-		result = prime * result + ( ( unidadeMedida == null ) ? 0 : unidadeMedida.hashCode() );
+		result = prime * result + ( ( preco == null ) ? 0 : preco.hashCode() );
+		result = prime * result + ( ( unidade == null ) ? 0 : unidade.hashCode() );
 		return result;
 	}
 
@@ -164,11 +169,18 @@ public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO
 		} else if ( !nome.equals( other.nome ) ) {
 			return false;
 		}
-		if ( unidadeMedida == null ) {
-			if ( other.unidadeMedida != null ) {
+		if ( preco == null ) {
+			if ( other.preco != null ) {
 				return false;
 			}
-		} else if ( !unidadeMedida.equals( other.unidadeMedida ) ) {
+		} else if ( !preco.equals( other.preco ) ) {
+			return false;
+		}
+		if ( unidade == null ) {
+			if ( other.unidade != null ) {
+				return false;
+			}
+		} else if ( !unidade.equals( other.unidade ) ) {
 			return false;
 		}
 		return true;
@@ -177,18 +189,31 @@ public final class ProdutoPO extends AbstractPO implements Comparable< ProdutoPO
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append( "ProdutoPO [\n\tid=" );
-		builder.append( id );
-		builder.append( ", \n\tnome=" );
-		builder.append( nome );
-		builder.append( ", \n\tpreco=" );
-		builder.append( preco );
-		builder.append( ", \n\tunidadeMedida=" );
-		builder.append( unidadeMedida );
-		builder.append( ", \n\tcategoria=" );
-		builder.append( categoria );
-		builder.append( ", \n\tgetDataHoraCadastro()=" );
-		builder.append( getDataHoraCadastro() );
+		builder.append( "ProdutoPO [\n\t" );
+		if ( id != null ) {
+			builder.append( "id=" );
+			builder.append( id );
+			builder.append( ", \n\t" );
+		}
+		if ( nome != null ) {
+			builder.append( "nome=" );
+			builder.append( nome );
+			builder.append( ", \n\t" );
+		}
+		if ( preco != null ) {
+			builder.append( "preco=" );
+			builder.append( preco );
+			builder.append( ", \n\t" );
+		}
+		if ( getCategoria() != null ) {
+			builder.append( "getCategoria()=" );
+			builder.append( getCategoria() );
+			builder.append( ", \n\t" );
+		}
+		if ( getUnidade() != null ) {
+			builder.append( "getUnidade()=" );
+			builder.append( getUnidade() );
+		}
 		builder.append( "]\n" );
 		return builder.toString();
 	}

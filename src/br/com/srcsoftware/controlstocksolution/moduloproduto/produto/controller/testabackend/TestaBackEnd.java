@@ -10,6 +10,8 @@ import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.controlle
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
 import br.com.srcsoftware.controlstocksolution.moduloproduto.produto.controller.ProdutoFACADE;
 import br.com.srcsoftware.controlstocksolution.moduloproduto.produto.model.ProdutoPO;
+import br.com.srcsoftware.controlstocksolution.moduloproduto.unidade.controller.UnidadeFACADE;
+import br.com.srcsoftware.controlstocksolution.moduloproduto.unidade.model.UnidadePO;
 import br.com.srcsoftware.managers.exceptions.BackendExceptions;
 
 /**
@@ -32,8 +34,8 @@ public final class TestaBackEnd{
 			po.setNome( "Coca Cola" );
 			po.setDataHoraCadastro( LocalDateTime.now() );
 			po.setPreco( new BigDecimal( "12.90" ) );
-			po.setUnidadeMedida( "UN" );
 			po.setCategoria( criarCategoria() );
+			po.setUnidade( criarUnidade() );
 
 			/** Inserir Produto */
 			new ProdutoFACADE().inserir( po );
@@ -77,4 +79,12 @@ public final class TestaBackEnd{
 		return po;
 	}
 
+	private static UnidadePO criarUnidade() throws BackendExceptions {
+		UnidadePO po = new UnidadePO();
+		po.setDataHoraCadastro( LocalDateTime.now() );
+		po.setNome( "Unidade" );
+		po.setSigla( "UN" );
+		new UnidadeFACADE().inserir( po );
+		return po;
+	}
 }

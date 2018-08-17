@@ -9,6 +9,7 @@ import org.junit.Test;
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
 import br.com.srcsoftware.controlstocksolution.moduloproduto.produto.dao.ProdutoDAO;
 import br.com.srcsoftware.controlstocksolution.moduloproduto.produto.model.ProdutoPO;
+import br.com.srcsoftware.controlstocksolution.moduloproduto.unidade.model.UnidadePO;
 import br.com.srcsoftware.managers.abstracts.AbstractPO;
 import br.com.srcsoftware.managers.connection.HibernateConnection;
 import br.com.srcsoftware.managers.exceptions.BackendExceptions;
@@ -31,7 +32,7 @@ public class TesteDAO{
 			po.setNome( "Coca-cola" );
 			po.setDataHoraCadastro( LocalDateTime.now() );
 			po.setPreco( new BigDecimal( "10.50" ) );
-			po.setUnidadeMedida( "UN" );
+			po.setUnidade( criarUnidade() );
 			po.setCategoria( criarCategotia() );
 
 			/** Inserindo */
@@ -78,6 +79,23 @@ public class TesteDAO{
 		po.setDataHoraCadastro( LocalDateTime.now() );
 		/** Inserindo */
 		po = (CategoriaPO) hibernate.inserir( po );
+		System.out.println( po );
+		hibernate.confirmarTransacao();
+
+		return po;
+	}
+
+	private UnidadePO criarUnidade() throws BackendExceptions {
+		HibernateConnection hibernate = new HibernateConnection();
+
+		hibernate.iniciarTransacao();
+		/** Criando Objeto PO */
+		UnidadePO po = new UnidadePO();
+		po.setNome( "Unidade" );
+		po.setSigla( "UN" );
+		po.setDataHoraCadastro( LocalDateTime.now() );
+		/** Inserindo */
+		po = (UnidadePO) hibernate.inserir( po );
 		System.out.println( po );
 		hibernate.confirmarTransacao();
 

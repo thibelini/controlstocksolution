@@ -12,6 +12,7 @@ import javax.persistence.criteria.Root;
 
 import br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO;
 import br.com.srcsoftware.controlstocksolution.moduloproduto.produto.model.ProdutoPO;
+import br.com.srcsoftware.controlstocksolution.moduloproduto.unidade.model.UnidadePO;
 import br.com.srcsoftware.managers.connection.HibernateConnection;
 import br.com.srcsoftware.managers.exceptions.BackendExceptions;
 
@@ -64,16 +65,22 @@ public final class ProdutoDAO{
 					predicates.add( precoParam );
 				}
 
-				if ( poFiltrar.getUnidadeMedida() != null && !poFiltrar.getUnidadeMedida().isEmpty() ) {
-					Predicate unidadeMedidaParam = builder.like( root.get( "unidadeMedida" ), poFiltrar.getUnidadeMedida().concat( "%" ) );
-					predicates.add( unidadeMedidaParam );
-				}
-
 				Join< ProdutoPO, CategoriaPO > joinCategoria = root.join( "categoria", JoinType.INNER );
 				if ( poFiltrar.getCategoria().getNome() != null && !poFiltrar.getCategoria().getNome().isEmpty() ) {
 					Predicate nomeCategoriaParam = builder.like( joinCategoria.get( "nome" ), poFiltrar.getCategoria().getNome().concat( "%" ) );
 					predicates.add( nomeCategoriaParam );
 				}
+				if ( poFiltrar.getCategoria().getId() != null ) {
+					Predicate idCategoriaParam = builder.equal( joinCategoria.get( "id" ), poFiltrar.getCategoria().getId() );
+					predicates.add( idCategoriaParam );
+				}
+
+				Join< ProdutoPO, UnidadePO > joinUnidade = root.join( "unidade", JoinType.INNER );
+				if ( poFiltrar.getUnidade().getId() != null ) {
+					Predicate nomeUnidadeParam = builder.equal( joinUnidade.get( "id" ), poFiltrar.getUnidade().getId() );//like( joinUnidade.get( "nome" ), poFiltrar.getUnidade().getNome().concat( "%" ) );
+					predicates.add( nomeUnidadeParam );
+				}
+
 			}
 
 			/** Adicionando o Predicado no WHERE */

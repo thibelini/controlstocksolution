@@ -50,4 +50,46 @@
 		});
 	});
 	
+	function validaErros(){
+		var msgRetornoDanger = $('.msgRetornoDanger').html();
+		var msgRetornoSuccess = $('.msgRetornoSucces').html();
+		
+		if (typeof msgRetornoDanger != "undefined"){
+			BootstrapDialog.show({
+				size  : BootstrapDialog.SIZE_LARGE,
+				title : 'Atenção',
+				message : msgRetornoDanger.trim(),
+				closable : true,
+				type : BootstrapDialog.TYPE_DANGER,
+				buttons:[
+					{label : 'OK', 
+						action : function(dialogRef){
+							dialogRef.close();
+						} 
+					}
+				]
+			});
+			$('.msgRetornoDanger').html('');
+		}
+		
+		if (typeof msgRetornoSuccess != "undefined"){
+			BootstrapDialog.show({
+				size  : BootstrapDialog.SIZE_LARGE,
+				title : '',
+				message : msgRetornoSuccess.trim(),
+				closable : true,
+				type : BootstrapDialog.TYPE_SUCCESS,
+				buttons:[
+					{label : 'OK', 
+						action : function(dialogRef){
+							dialogRef.close();
+						} 
+					}
+				]
+			});
+			$('.msgRetornoSucces').html('');
+		}
+	
+	}
+	
 </script>

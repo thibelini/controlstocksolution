@@ -29,6 +29,7 @@
 		<mapping class="br.com.srcsoftware.managers.abstracts.AbstractPO"/>
 		<mapping class="br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.model.CategoriaPO"/>
 		<mapping class="br.com.srcsoftware.controlstocksolution.moduloproduto.produto.model.ProdutoPO"/>
+		<mapping class="br.com.srcsoftware.controlstocksolution.moduloproduto.unidade.model.UnidadePO"/>
 	</session-factory>
 	
 </hibernate-configuration>

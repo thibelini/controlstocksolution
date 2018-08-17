@@ -12,24 +12,30 @@
 			<li>
 				<a href="#">
 					<i class="fa fa-bar-chart-o fa-fw"></i>
-					Charts
+					Cadastros
 					<span class="fa arrow"></span>
 				</a>
 				<ul class="nav nav-second-level">
 					<li>
-						<a href="flot.html">Flot Charts</a>
+						<a href="${rootWeb}/categoriaAction.do?method=abrirTela">
+							<i class="fa fa-cubes fa-fw"></i>
+							Categoria
+						</a>
 					</li>
 					<li>
-						<a href="morris.html">Morris.js Charts</a>
+						<a href="${rootWeb}/unidadeAction.do?method=abrirTela">
+							<i class="fa fa-ticket fa-fw"></i>
+							Unidade
+						</a>
+					</li>
+					<li>
+						<a href="${rootWeb}/produtoAction.do?method=abrirTela">
+							<i class="fa fa-product-hunt fa-fw"></i>
+							Produto
+						</a>
 					</li>
 				</ul>
 				<!-- /.nav-second-level -->
-			</li>
-			<li>
-				<a href="${rootWeb}/categoriaAction.do?method=abrirTela">
-					<i class="fa fa-cubes fa-fw"></i>
-					Categoria
-				</a>
 			</li>
 		</ul>
 	</div>

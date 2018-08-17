@@ -8,6 +8,8 @@
 		<!-- name: Apelido dado para a classe Form para acesso nos JSPs -->
 		<!-- type: Nome da Classe juntamente com seu package -->
 		<form-bean name="categoriaForm" type="br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.view.CategoriaForm" />
+		<form-bean name="produtoForm" type="br.com.srcsoftware.controlstocksolution.moduloproduto.produto.view.ProdutoForm" />
+		<form-bean name="unidadeForm" type="br.com.srcsoftware.controlstocksolution.moduloproduto.unidade.view.UnidadeForm" />
 		<form-bean name="desktopForm" type="br.com.srcsoftware.controlstocksolution.desktop.view.DesktopForm" />
 		<!-- form-bean name="categoriaForm" type="br.com.srcsoftware.controlstocksolution.moduloproduto.categoria.view.CategoriaForm" /-->
 	</form-beans>
@@ -26,6 +28,22 @@
 				parameter="method" 
 				scope="session">
 			<forward name="categoriaView" path=".categoriaView" />
+		</action>
+		
+		<action path="/produtoAction" 
+				type="br.com.srcsoftware.controlstocksolution.moduloproduto.produto.view.ProdutoAction" 
+				name="produtoForm" 
+				parameter="method" 
+				scope="session">
+			<forward name="produtoView" path=".produtoView" />
+		</action>
+		
+		<action path="/unidadeAction" 
+				type="br.com.srcsoftware.controlstocksolution.moduloproduto.unidade.view.UnidadeAction" 
+				name="unidadeForm" 
+				parameter="method" 
+				scope="session">
+			<forward name="unidadeView" path=".unidadeView" />
 		</action>
 		
 		<action path="/desktopAction" 
